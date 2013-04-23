@@ -1,6 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Seizure - Copy.shader">
+    <Files>
+      <File FileName="Assets\Mob.cs" Line="23" Column="19" />
+      <File FileName="Assets\Camera.cs" Line="19" Column="3" />
+      <File FileName="Assets\Projectile.cs" Line="11" Column="3" />
+      <File FileName="Assets\Player.cs" Line="22" Column="58" />
+      <File FileName="Assets\Seizure - Copy.shader" Line="54" Column="22" />
+      <File FileName="Assets\DontGoThroughThings.cs" Line="15" Column="2" />
+      <File FileName="Assets\Shader.shader" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
