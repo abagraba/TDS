@@ -35,7 +35,7 @@ Shader "Custom/Seizurex" {
 			    v2f o;
 			    o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
 			    
-			    float4 p = mul (UNITY_MATRIX_MV, v.vertex);
+			    float4 p = o.pos;
 			    
 			    
 			    float3 dr = p.xyz - _rPos.xyz;

@@ -4,7 +4,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class Camera : MonoBehaviour {
 	
-	public GameObject target;
+	public Player target;
 	public float verticalOffset;
 	public float horizontalOffset;
 	public float distance;
@@ -24,6 +24,7 @@ public class Camera : MonoBehaviour {
 		transform.position += verticalOffset*target.transform.up;
 		transform.position += horizontalOffset*target.transform.right;
 		transform.position -= distance*target.transform.forward;
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position+target.transform.forward*lookDistance-transform.position), rotSpeed);
+		Vector3 lookDirection = target.transform.position+target.transform.forward*lookDistance-transform.position;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection, -target.grav), rotSpeed);
 	}
 }
