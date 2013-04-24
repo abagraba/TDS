@@ -50,6 +50,7 @@
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\Projectile.cs" />
      <Compile Include="Assets\ShaderControl.cs" />
+     <Compile Include="Assets\WireFrame.cs" />
      <None Include="Assets\Shader.shader" />
      <None Include="Assets\Seizure - Copy.shader" />
      <None Include="Assets\Seizure.shader" />
