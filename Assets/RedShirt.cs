@@ -3,51 +3,51 @@ using System.Collections;
 
 public class RedShirt : Mob {
 	
-	public float moveForce = 60.0f;
+	public Mob target;
 	public float turnSpeed = 0.05f;
-	public int health = 20;
 	
-	// Use this for initialization
-	void Start () {
+	public MobFactory firex;
 	
-	}
+	
+	public float cooldown = 1;
+	private float cool;
+	
 	
 	public override void init(Vector3 vel){
-		
+		health = 20;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		//they're red shirts.  They don't do much beyond move and shoot.
-		var distance = Vector3.Distance(this.transform.position, GameObject.Find ("Player").transform.position);
-		if (distance > 5)
-			move();
-		if (distance < 20)
+		move();
+		if (cool < 0 ){
 			fire();
+			cool = cooldown;
+		}
+		cool -= Time.fixedDeltaTime;
 	}
 	
 	public override void move()
 	{
-		this.transform.LookAt (GameObject.Find("Player").transform.position);
-		Vector3 pos = new Vector3();
-		
-		transform.position = Vector3.MoveTowards (this.transform.position, GameObject.Find ("Player").transform.position, moveForce * Time.deltaTime);
+		transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, up), up);
+		rigidbody.AddForce(transform.forward*moveForce);	
 	}
 	
 	public void fire()
 	{
 		//assuming that doing this will make the bullet move in the direction that the Red Shirt is looking
-		Projectile bullet = new Projectile();
-		bullet.move ();
+		firex.create(transform.position, transform.rotation, rigidbody.velocity);
 	}
 	
-	public void OnCollisionEnter()
+	public override void collide(Collision cx)
 	{
-		health -= 10;
+		Debug.Log ("c");
+		if (cx.collider.CompareTag("Player"))
+			health -= 10;
+		if (health <= 0)
+			Destroy (gameObject);
 	}
 	
-	public void OnCollisionExit()
-	{
-		
-	}
+	
 }

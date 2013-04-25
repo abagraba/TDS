@@ -47,5 +47,14 @@ public class Player : Mob{
 	
 	}
 	
+	public override void collide(Collision cx)
+	{
+		if (cx.collider.CompareTag("Enemy"))
+			health -= 1;
+		if (health <= 0)
+			Destroy (gameObject);
+	}
+	
+	
 }
 

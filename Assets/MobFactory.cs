@@ -12,15 +12,15 @@ public class MobFactory : MonoBehaviour {
 	public void create(Vector3 pos, Quaternion rot, Vector3 vel){
 		foreach (Mob o in args){
 			LinkedListNode<GameObject> n = dead.First;
-			Projectile p;
+			Mob p;
 			if (n != null){
-				p = n.Value.GetComponent<Projectile>();
+				p = n.Value.GetComponent<Mob>();
 				p.transform.position = pos;
 				p.transform.rotation = rot;
 				dead.RemoveFirst();
 			}
 			else{
-				p = ((GameObject)Instantiate(o.gameObject, pos, rot)).GetComponent<Projectile>();
+				p = ((GameObject)Instantiate(o.gameObject, pos, rot)).GetComponent<Mob>();
 				p.GetComponent<Mob>().factory = this;
 			}
 			p.init(vel);

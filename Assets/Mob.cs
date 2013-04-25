@@ -17,7 +17,7 @@ public abstract class Mob : MonoBehaviour {
 	public float rotSpeed = 0.05f;
 	public float gravForce = 20.0f;
 	public float moveForce = 40;			
-	
+	protected float health = 20;
 	
 	void Start(){
 		grav = new Vector3(transform.position.x, 0, transform.position.z).normalized;
@@ -48,18 +48,18 @@ public abstract class Mob : MonoBehaviour {
 	public abstract void move();
 	
 	void OnCollisionEnter(Collision cx){
-		collide(cx);
+		col(cx);
 	}
 	
 	void OnCollisionStay(Collision cx){
-		collide(cx);
+		col(cx);
 	}
 	
 	void OnCollisionExit(Collision cx){
 		onGround = false;
 	}
 	
-	void collide(Collision cx){
+	void col(Collision cx){
 		if (cx.collider.CompareTag("Terrain")){
 			Vector3 norms = new Vector3(0, 0, 0);
 			int size = 0;
@@ -70,5 +70,10 @@ public abstract class Mob : MonoBehaviour {
 			up = norms.normalized;
 			onGround = true;
 		}
+		collide(cx);
+	}
+	
+	public virtual void collide(Collision cx){
+		
 	}
 }
