@@ -4,7 +4,7 @@ using System.Collections;
 [ExecuteInEditMode]
 public class Camera : MonoBehaviour {
 	
-	public Player target;
+	public Mob target;
 	public float verticalOffset;
 	public float horizontalOffset;
 	public float distance;

@@ -29,6 +29,6 @@ public class RedShirtSpawner : MobFactory {
 	{
 		float theta = Random.value;
 		Vector3 pos = new Vector3(Mathf.Cos(theta), Random.Range(minRange, maxRange), Mathf.Sin(theta));
-		create(pos, Quaternion.LookRotation(new Vector3(0, 1, 1)), new Vector3(0, 0, 0));
+		create(pos, Quaternion.LookRotation(new Vector3(0, -1, 0), -pos), new Vector3(0, 0, 0));
 	}
 }

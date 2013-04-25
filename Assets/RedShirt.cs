@@ -17,22 +17,19 @@ public class RedShirt : Mob {
 		health = 20;
 	}
 	
-	// Update is called once per frame
-	void FixedUpdate () {
-		//they're red shirts.  They don't do much beyond move and shoot.
-		move();
-		if (cool < 0 ){
-			fire();
-			cool = cooldown;
-		}
-		cool -= Time.fixedDeltaTime;
-	}
 	
 	public override void move()
 	{
 		transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, up), up);
 		rigidbody.AddForce(transform.forward*moveForce);	
-	}
+		
+		//they're red shirts.  They don't do much beyond move and shoot.
+		if (cool < 0 ){
+			fire();
+			cool = cooldown;
+		}
+		cool -= Time.fixedDeltaTime;
+		}
 	
 	public void fire()
 	{
@@ -42,7 +39,6 @@ public class RedShirt : Mob {
 	
 	public override void collide(Collision cx)
 	{
-		Debug.Log ("c");
 		if (cx.collider.CompareTag("Player"))
 			health -= 10;
 		if (health <= 0)
