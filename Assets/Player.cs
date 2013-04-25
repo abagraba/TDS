@@ -3,8 +3,13 @@ using System.Collections;
 
 public class Player : Mob{
 	
-	public float jumpForce = 500.0f;
+	public float jumpvel = 500.0f;
 	public float turnSpeed = 0.05f;
+		
+	public float cooldown = 10;
+	private float cool;
+	
+	public MobFactory fire;
 	
 	public override void move(){
 		//Rotate
@@ -27,9 +32,15 @@ public class Player : Mob{
 			rigidbody.AddForce(pos.normalized*moveForce);	
 
 		if (onGround && Input.GetKey(KeyCode.Space)){
-			rigidbody.AddForce(-grav.normalized*jumpForce);	
+			rigidbody.velocity = rigidbody.velocity + (up.normalized*jumpvel);	
 			onGround = false;
 		}
+		
+		if (Input.GetAxis("Fire1")>=1 && (cool < 0)){
+			fire.create(transform.position, transform.rotation, rigidbody.velocity);
+			cool = cooldown;
+		}
+		cool -= Time.fixedDeltaTime;
 	}	
 	
 	public override void init(Vector3 vel){

@@ -7,10 +7,13 @@ public abstract class Mob : MonoBehaviour {
 	public MobFactory factory;
 	
 	
-	private RaycastHit hit;
+	[HideInInspector]
 	public Vector3 grav;
+	[HideInInspector]
+	public Vector3 up;
+	
+	private RaycastHit hit;
 	protected bool onGround;
-	protected Vector3 up;
 	public float rotSpeed = 0.05f;
 	public float gravForce = 20.0f;
 	public float moveForce = 40;			
@@ -25,12 +28,13 @@ public abstract class Mob : MonoBehaviour {
 		grav = new Vector3(transform.position.x, 0, transform.position.z).normalized;
 		
 		if(!onGround){
-			transform.rotation = Quaternion.Slerp(Quaternion.LookRotation(transform.forward, -grav), Quaternion.LookRotation(transform.forward, -grav), 0.0001f);
+			transform.rotation = Quaternion.Slerp(Quaternion.LookRotation(transform.forward, up), Quaternion.LookRotation(transform.forward, -grav), 0.1f);
 		}
 		else{
 			Quaternion dest = Quaternion.LookRotation(Vector3.Cross(transform.right, up), up);
 			transform.rotation = Quaternion.Slerp(transform.rotation, dest, rotSpeed);
 		}
+		up = transform.up;
 		
 		move ();
 		

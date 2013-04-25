@@ -19,12 +19,12 @@ public class Camera : MonoBehaviour {
         GL.wireframe = false;
     }
 	
-	void Update () {
+	void FixedUpdate () {
 		transform.position = target.transform.position;
-		transform.position += verticalOffset*target.transform.up;
+		transform.position -= verticalOffset*target.grav;
 		transform.position += horizontalOffset*target.transform.right;
 		transform.position -= distance*target.transform.forward;
-		Vector3 lookDirection = target.transform.position+target.transform.forward*lookDistance-transform.position;
-		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection, -target.grav), rotSpeed);
+		Vector3 lookDirection = target.transform.position+Vector3.Cross(target.transform.right, target.up).normalized*lookDistance-transform.position;
+		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.forward, -target.grav), rotSpeed);
 	}
 }
