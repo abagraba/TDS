@@ -12,6 +12,10 @@ public class RedShirt : Mob {
 	
 	}
 	
+	public override void init(Vector3 vel){
+		
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		//they're red shirts.  They don't do much beyond move and shoot.

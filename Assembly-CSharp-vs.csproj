@@ -45,15 +45,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Camera.cs" />
-     <Compile Include="Assets\DontGoThroughThings.cs" />
      <Compile Include="Assets\Mob.cs" />
+     <Compile Include="Assets\MobFactory.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\Projectile.cs" />
+     <Compile Include="Assets\RedShirt.cs" />
+     <Compile Include="Assets\RedShirtSpawner.cs" />
      <Compile Include="Assets\ShaderControl.cs" />
-     <Compile Include="Assets\WireFrame.cs" />
-     <None Include="Assets\Shader.shader" />
-     <None Include="Assets\Seizure - Copy.shader" />
-     <None Include="Assets\Seizure.shader" />
+     <None Include="Assets\Materials\Shader.shader" />
+     <None Include="Assets\Materials\Color.shader" />
+     <None Include="Assets\Materials\Seizure - Copy.shader" />
+     <None Include="Assets\Materials\Seizure.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
