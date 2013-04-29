@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Player : Mob{
 	
+	public float initAngle = 0;
+	
 	public float jumpvel = 500.0f;
 	public float turnSpeed = 0.05f;
 		
@@ -12,7 +14,13 @@ public class Player : Mob{
 	public MobFactory fire;
 	
 	public override void move(){
-		//Rotate
+		if (health > 0)
+			userInput();
+		cool -= Time.fixedDeltaTime;
+	}	
+	
+	public void userInput(){
+	//Rotate
 		if (Input.GetKey(KeyCode.Q))
 			transform.RotateAround(transform.up, -turnSpeed);
 		if (Input.GetKey(KeyCode.E))
@@ -40,19 +48,19 @@ public class Player : Mob{
 			fire.create(transform.position, transform.rotation, rigidbody.velocity);
 			cool = cooldown;
 		}
-		cool -= Time.fixedDeltaTime;
-	}	
+			
+	}
 	
 	public override void init(Vector3 vel){
-	
+		Vector3 pos = new Vector3(Mathf.Cos(initAngle), transform.position.y, Mathf.Sin(initAngle));
+		transform.position = pos;
+		transform.rotation = Quaternion.LookRotation(new Vector3(0, 1, 0), -pos);
 	}
 	
 	public override void collide(Collision cx)
 	{
 		if (cx.collider.CompareTag("Enemy"))
 			health -= 1;
-		if (health <= 0)
-			Destroy (gameObject);
 	}
 	
 	
